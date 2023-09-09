@@ -1,14 +1,14 @@
 from __future__ import annotations
+
 from itertools import combinations
 
 import numpy as np
-from scipy import spatial, linalg
+from scipy import linalg, spatial
 
 from .base import TessellationBase
 
 
 class TessellationGeneric(TessellationBase):
-
     @staticmethod
     def simplex_sides(*vertices):
         # combinatoric approach - not gonna use this in practice, hopefully
@@ -23,12 +23,11 @@ class TessellationGeneric(TessellationBase):
         return linalg.det(mat) / np.math.factorial(dim)
 
     class Normalization(TessellationBase):
-
         def nsphere_approx(self) -> float:
             # stirling's approximation - not gonna use this in practice, hopefully
             d = self.points.shape[1]
             r = linalg.norm(self.points, axis=1)
-            return 1 / np.sqrt(d * np.pi) * (2 * np.pi * np.e / d)**(d / 2) * np.max(r)**d
+            return 1 / np.sqrt(d * np.pi) * (2 * np.pi * np.e / d) ** (d / 2) * np.max(r) ** d
 
         def convexhull(self) -> float:
             # breaks for co-rotation cases
