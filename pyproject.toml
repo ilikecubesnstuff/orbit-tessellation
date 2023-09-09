@@ -21,3 +21,11 @@ plotting = [
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=7.4.2",
+]
+dev = [
+    "tox-pdm>=0.7.0",
+]
