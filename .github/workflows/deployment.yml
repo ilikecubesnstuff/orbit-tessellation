@@ -53,7 +53,7 @@ jobs:
         username: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        pdm publish -r testpypi -u ${{ env.username }} -P ${{ env.password }}
+        pdm publish -u ${{ env.username }} -P ${{ env.password }}
 
   install:
     needs: deploy
