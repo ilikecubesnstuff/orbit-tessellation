@@ -1,5 +1,5 @@
 [project]
-name = "tessellation"
+name = "orbit-tessellation"
 version = "0.1.0"
 description = "A Python package for evaluating orbit commensurability using Delaunay tessellation."
 authors = [
