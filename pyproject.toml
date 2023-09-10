@@ -60,4 +60,5 @@ docs = [
     "mkdocstrings[python]>=0.23.0",
     "mkdocs-gen-files>=0.5.0",
     "mkdocs-literate-nav>=0.6.0",
+    "mkdocs-material>=9.2.8",
 ]

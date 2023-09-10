@@ -1,3 +1,14 @@
+"""
+!!! attention "AI-Generated Content"
+    This docstring is AI-generated.
+
+Module: base
+
+This module defines the `TessellationBase` class and related functions for the tessellation package. The `TessellationBase` class serves as the base class for tessellation algorithms applied to orbits.
+
+The module also includes custom exceptions and utility functions used in tessellation calculations.
+
+"""
 from __future__ import annotations
 
 import warnings
@@ -16,6 +27,13 @@ def MISSING_METHOD() -> None:
 
 
 class FailedDelaunay:
+    """
+    !!! attention "AI-Generated Content"
+        This docstring is AI-generated.
+
+    A class representing a failed Delaunay triangulation.
+    """
+
     def __init__(self):
         self.nsimplex = 0
         self.simplices = [[0]]
@@ -23,6 +41,13 @@ class FailedDelaunay:
 
 
 class TessellationBase:
+    """
+    !!! attention "AI-Generated Content"
+        This docstring is AI-generated.
+
+    A base class for tessellation algorithms applied to orbits.
+    """
+
     __slots__ = (
         "points",
         "normalizations",
@@ -43,6 +68,21 @@ class TessellationBase:
         normalization_routine: str = "default",
         verbosity: int = 0,
     ) -> None:
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Initialize a TessellationBase instance.
+
+        Args:
+            points (np.ndarray): The input points for tessellation.
+            incremental (bool, optional): Whether to use incremental Delaunay triangulation (default True).
+            qhull_options (str, optional): Additional options for Qhull (default None).
+            axis_ratio (float, optional): Threshold for tessellation trimming (default 10).
+            normalization_routine (str, optional): The normalization routine to use (default "default").
+            verbosity (int, optional): Verbosity level (default 0).
+
+        """
         self.points: np.ndarray = points
         self._normalizations: Mapping[str, Callable]
         self.tri: Union[spatial.Delaunay, FailedDelaunay]
@@ -158,12 +198,49 @@ class TessellationBase:
         self.normalization_const = normalization_method(self)
 
     @abstractstaticmethod
-    def simplex_sides(*vertices):
+    def simplex_sides(*vertices: np.ndarray) -> list:
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Abstract method to calculate simplex side lengths.
+
+        Args:
+            *vertices: The vertices of the simplex.
+
+        Returns:
+            List[float]: A list of side lengths.
+        """
         pass
 
     @abstractstaticmethod
-    def simplex_measure(*vertices):
+    def simplex_measure(*vertices: np.ndarray) -> float:
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Abstract method to calculate the measure of a simplex.
+
+        Args:
+            *vertices: The vertices of the simplex.
+
+        Returns:
+            float: The measure of the simplex.
+        """
         pass
 
     def plot(self, fig, plot_included=True, plot_removed=False, plot_points=True, verbosity=1):
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Plot the tessellation.
+
+        Args:
+            fig (matplotlib.figure.Figure): The figure for plotting.
+            plot_included (bool, optional): Whether to plot included edges (default True).
+            plot_removed (bool, optional): Whether to plot removed edges (default False).
+            plot_points (bool, optional): Whether to plot points (default True).
+            verbosity (int, optional): Verbosity level (default 1).
+        """
         pass

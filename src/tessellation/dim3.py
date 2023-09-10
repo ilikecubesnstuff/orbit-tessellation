@@ -1,3 +1,18 @@
+"""
+!!! attention "AI-Generated Content"
+    This docstring is AI-generated.
+
+Module: dim3
+
+This module provides a 3D tessellation algorithm applied to orbits using various methods for calculating
+simplex sides, measures, and normalizations. It also includes a plotting function for visualizing the tessellation results.
+
+The `Tessellation3D` class is the main class of this module, inheriting from `TessellationBase`. It offers methods
+for calculating simplex sides and measures in 3D space. Additionally, it contains a nested `Normalization` class
+with various normalization methods for 3D tessellation.
+
+This module is part of the tessellation package and can be used for 3D orbit tessellation tasks.
+"""
 import numpy as np
 
 try:
@@ -14,8 +29,28 @@ from .base import TessellationBase
 
 
 class Tessellation3D(TessellationBase):
+    """
+    !!! attention "AI-Generated Content"
+        This docstring is AI-generated.
+
+    A class representing a 3D tessellation applied to orbits.
+    """
+
     @staticmethod
-    def simplex_sides(*vertices):
+    def simplex_sides(*vertices: np.ndarray) -> list:
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Compute the side lengths of a 3D simplex defined by its vertices.
+
+        Args:
+            *vertices: The vertices of the simplex.
+
+        Returns:
+            list: List of side lengths.
+
+        """
         v1, v2, v3, v4 = vertices
         return [
             linalg.norm(v2 - v1),
@@ -27,7 +62,20 @@ class Tessellation3D(TessellationBase):
         ]
 
     @staticmethod
-    def simplex_measure(*vertices):
+    def simplex_measure(*vertices: np.ndarray) -> float:
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Compute the measure (volume) of a 3D simplex defined by its vertices.
+
+        Args:
+            *vertices: The vertices of the simplex.
+
+        Returns:
+            float: The volume of the simplex.
+
+        """
         (x1, y1, z1), (x2, y2, z2), (x3, y3, z3), (x4, y4, z4) = vertices
         a1 = (x2 - x1) * ((y3 - y1) * (z4 - z1) - (y4 - y1) * (z3 - z1))
         a2 = (x3 - x1) * ((y4 - y1) * (z2 - z1) - (y2 - y1) * (z4 - z1))
@@ -35,15 +83,61 @@ class Tessellation3D(TessellationBase):
         return abs(a1 + a2 + a3) / 6
 
     class Normalization:
-        def sphere(self):
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        A class providing various methods for normalization in 3D tessellation.
+
+        Methods:
+            sphere: Compute the volume of a sphere containing the points.
+            cylinder: Compute the volume of a cylinder containing the points.
+            Rz_convexhull: Compute the volume of the convex hull after rotation.
+            convexhull: Compute the volume of the convex hull of the points.
+            convexhull_rot4: Compute the volume of the convex hull after rotation by 90 degrees four times.
+            default: Default normalization method (convexhull_rot4).
+
+        """
+
+        def sphere(self) -> float:
+            """
+            !!! attention "AI-Generated Content"
+                This docstring is AI-generated.
+
+            Compute the volume of a sphere containing the points.
+
+            Returns:
+                float: Volume of the sphere.
+
+            """
             r = linalg.norm(self.points, axis=1)
             return 4 / 3 * np.pi * np.max(r) ** 3
 
-        def cylinder(self):
+        def cylinder(self) -> float:
+            """
+            !!! attention "AI-Generated Content"
+                This docstring is AI-generated.
+
+            Compute the volume of a cylinder containing the points.
+
+            Returns:
+                float: Volume of the cylinder.
+
+            """
             x, y, z = self.points.T
             return np.pi * np.max(x**2 + y**2) * (np.max(z) - np.min(z))
 
-        def Rz_convexhull(self):
+        def Rz_convexhull(self) -> float:
+            """
+            !!! attention "AI-Generated Content"
+                This docstring is AI-generated.
+
+            Compute the volume of the convex hull after rotation.
+
+            Returns:
+                float: Volume of the convex hull after rotation.
+
+            """
             x, y, z = self.points.T
             R = np.sqrt(x**2 + y**2)
             points = np.array([R, z]).T
@@ -63,11 +157,31 @@ class Tessellation3D(TessellationBase):
             centroid = np.sum([a * c for c, a in zip(centroids, areas)], axis=0)
             return 2 * np.pi * np.linalg.norm(centroid[:2])
 
-        def convexhull(self):
+        def convexhull(self) -> float:
+            """
+            !!! attention "AI-Generated Content"
+                This docstring is AI-generated.
+
+            Compute the volume of the convex hull of the points.
+
+            Returns:
+                float: Volume of the convex hull.
+
+            """
             hull = spatial.ConvexHull(self.points)
             return hull.volume
 
-        def convexhull_rot4(self):
+        def convexhull_rot4(self) -> float:
+            """
+            !!! attention "AI-Generated Content"
+                This docstring is AI-generated.
+
+            Compute the volume of the convex hull after rotation by 90 degrees four times.
+
+            Returns:
+                float: Volume of the convex hull after rotation.
+
+            """
             x, y, z = self.points.T
             r000 = np.array([+x, +y, z]).T
             r090 = np.array([-y, +x, z]).T
@@ -94,7 +208,24 @@ class Tessellation3D(TessellationBase):
         show=True,
     ):
         """
-        Plot the triangulation - trimmed triangles are drawn in red.
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Plot the 3D tessellation.
+
+        Args:
+            plot_included (bool): Whether to plot included triangles (default True).
+            plot_removed (bool): Whether to plot removed triangles (default False).
+            plot_points (bool): Whether to plot points (default True).
+            verbosity (int): Verbosity level (default 1).
+            ax (mpl_toolkits.mplot3d.axes3d.Axes3D, optional): Matplotlib 3D axes (default None).
+            show (bool): Whether to display the plot (default True).
+
+        Raises:
+            ImportError: If Matplotlib is not available.
+
+            RuntimeError: If tessellation failed.
+
         """
         if not PLOTTING:
             raise ImportError("This method requires matplotlib")

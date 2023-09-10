@@ -1,3 +1,13 @@
+"""
+!!! attention "AI-Generated Content"
+    This docstring is AI-generated.
+
+Module: constructor
+
+This module provides functions for tessellating orbits in different dimensions. It includes the `Tessellation` function, which creates a tessellation object based on the input data and parameters.
+
+"""
+
 from __future__ import annotations
 
 import inspect
@@ -22,6 +32,30 @@ def Tessellation(
     normalization_routine: str = "default",
     verbosity: int = 0,
 ) -> _TessType:
+    """
+    !!! attention "AI-Generated Content"
+        This docstring is AI-generated.
+
+    Create a tessellation object based on the input data.
+
+    This function creates a tessellation object based on the input data and parameters. The dimensionality of the input data is determined automatically, and the appropriate tessellation class is used.
+
+    Args:
+        orbit_or_point_array (Any): Input data, which can be an orbit object or a 2D array of shape (npoints, ndim).
+        dims_for_orbit (Optional[tuple[str]], optional): Dimension names for orbit objects (default None).
+        incremental (bool, optional): Whether to use incremental Delaunay triangulation (default True).
+        qhull_options (str, optional): Additional options for Qhull (default None).
+        axis_ratio (float, optional): Threshold for tessellation trimming (default 10).
+        normalization_routine (str, optional): The normalization routine to use (default "default").
+        verbosity (int, optional): Verbosity level (default 0).
+
+    Returns:
+        _TessType: A tessellation object of the appropriate dimensionality.
+
+    Raises:
+        LowDimensionalityException: If the input data has an unsupported dimensionality (less than 2).
+
+    """
     points = orbit = orbit_or_point_array
 
     pkg = None
