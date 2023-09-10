@@ -14,7 +14,7 @@ rng = np.random.default_rng(0)
 
 class TestBasics:
     def test_version(self):
-        assert version("tessellation") == tessellation.__version__
+        assert version("orbit-tessellation") == tessellation.__version__
 
 
 class TestInsufficientDimensionality:
