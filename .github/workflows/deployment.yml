@@ -11,6 +11,7 @@ name: Package Release
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -31,10 +32,10 @@ jobs:
 
     - name: Publish to TestPyPI
       env:
-        PDM_PUBLISH_USERNAME: __token__
-        PDM_PUBLISH_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        username: __token__
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
       run: |
-        pdm publish --repository testpypi
+        pdm publish -r testpypi -u ${{ env.username }} -P ${{ env.password }}
 
     - name: Test install from TestPyPI
       run: |
@@ -42,7 +43,7 @@ jobs:
 
     - name: Publish to PyPI
       env:
-        PDM_PUBLISH_USERNAME: __token__
-        PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        username: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        pdm publish
+        pdm publish -r testpypi -u ${{ env.username }} -P ${{ env.password }}
