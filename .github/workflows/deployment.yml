@@ -15,7 +15,7 @@ on:
     inputs:
       skip_testpypi:
         description: "Skip uploading to TestPyPI"
-        default: true
+        default: false
         type: choice
         options:
         - true
@@ -27,7 +27,7 @@ permissions:
 jobs:
 
   test_deploy:
-    if: ${{ inputs.skip_testpypi }} == true
+    if: ${{ inputs.skip_testpypi }} == false
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
