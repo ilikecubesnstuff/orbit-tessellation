@@ -46,7 +46,8 @@ jobs:
         python-version: "3.11"
     - name: Install package from TestPyPI
       run: |
-        pip install --index-url https://test.pypi.org/simple/ orbit-tessellation
+        python -m pip install --upgrade pip
+        python -m pip install --index-url https://test.pypi.org/simple/ orbit-tessellation
 
   deploy:
     needs: test_install
@@ -77,4 +78,5 @@ jobs:
         python-version: "3.11"
     - name: Install from PyPI
       run: |
-        pip install orbit-tessellation
+        python -m pip install --upgrade pip
+        python -m pip install orbit-tessellation
