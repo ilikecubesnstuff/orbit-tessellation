@@ -1,4 +1,4 @@
-# orbit-tessellation
+# `orbit-tessellation` documentation
 
 [![PyPI - Version](https://img.shields.io/pypi/v/orbit-tessellation)](https://pypi.org/project/orbit-tessellation/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orbit-tessellation)](https://pypi.org/project/orbit-tessellation/)
