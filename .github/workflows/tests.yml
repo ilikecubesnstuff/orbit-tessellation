@@ -7,7 +7,42 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
+
 jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.8"
+    - name: Check style with black
+      uses: psf/black@stable
+    # isort throws errors outside ubuntu? see https://github.com/isort/isort-action/issues/80
+    # - uses: isort/isort-action@master
+    - name: Lint with Ruff
+      uses: chartboost/ruff-action@v1
+      with:
+        src: "./src"
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up PDM
+      uses: pdm-project/setup-pdm@v2
+      with:
+        python-version: "3.8"
+    - name: Install dependencies
+      run: |
+        pdm sync --dev
+    - name: Run mypy
+      run: |
+        pdm run -v mypy src
+
   tox:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -15,16 +50,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    # - uses: psf/black@stable
-    # isort throws errors outside ubuntu? see https://github.com/isort/isort-action/issues/80
-    # - uses: isort/isort-action@master
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
