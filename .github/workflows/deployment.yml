@@ -18,18 +18,17 @@ permissions:
 
 jobs:
 
-  deploy:
+  test_deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Set up PDM
       uses: pdm-project/setup-pdm@v3
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: Install package
       run: |
         pdm install
-
     - name: Publish to TestPyPI
       env:
         username: __token__
@@ -37,13 +36,45 @@ jobs:
       run: |
         pdm publish -r testpypi -u ${{ env.username }} -P ${{ env.password }}
 
-    - name: Test install from TestPyPI
+  test_install:
+    needs: test_deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    - name: Install package from TestPyPI
       run: |
         pip install --index-url https://test.pypi.org/simple/ orbit-tessellation
 
+  deploy:
+    needs: test_install
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up PDM
+      uses: pdm-project/setup-pdm@v3
+      with:
+        python-version: "3.11"
+    - name: Install package
+      run: |
+        pdm install
     - name: Publish to PyPI
       env:
         username: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         pdm publish -r testpypi -u ${{ env.username }} -P ${{ env.password }}
+
+  install:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    - name: Install from PyPI
+      run: |
+        pip install orbit-tessellation
