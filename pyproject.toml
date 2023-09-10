@@ -1,6 +1,6 @@
 [project]
 name = "orbit-tessellation"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python package for evaluating orbit commensurability using Delaunay tessellation."
 authors = [
     {name = "ilikecubesnstuff", email = "subho1618@gmail.com"},
