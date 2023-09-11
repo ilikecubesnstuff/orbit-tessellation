@@ -4,3 +4,4 @@ mkdocs-literate-nav==0.6.0
 mkdocs-material==9.2.7
 mkdocstrings==0.23.0
 mkdocstrings-python==1.6.2
+orbit-tessellation @ git+https://github.com/ilikecubesnstuff/orbit-tessellation.git@docs
