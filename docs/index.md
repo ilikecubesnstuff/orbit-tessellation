@@ -1,4 +1,4 @@
-# `orbit-tessellation` documentation
+# Home Page for `orbit-tessellation`
 
 [![PyPI - Version](https://img.shields.io/pypi/v/orbit-tessellation)](https://pypi.org/project/orbit-tessellation/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orbit-tessellation)](https://pypi.org/project/orbit-tessellation/)
@@ -10,26 +10,3 @@
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
 A Python package for evaluating orbit commensurability using Delaunay tessellation. Use this in the [commensurability](https://github.com/ilikecubesnstuff/commensurability) package to analyze galaxy potentials.
-
-## Installation
-
-Install this package via `pip`:
-
-```
-python -m pip install orbit-tessellation
-```
-
-## Usage
-
-Use `tessellation.Tessellation` on your point array to perform the commensurability evaluation.
-
-```py
-import numpy as np
-from tessellation import Tessellation
-
-# generate 100 random 2D points
-points = np.random.normal(size=(100, 2))
-tess = Tessellation(points)
-```
-
-This returns a tessellation object that contains info in its attributes. The `.measure` attribute gives the measure of the orbit (normalized to be in `[0, 1)`).

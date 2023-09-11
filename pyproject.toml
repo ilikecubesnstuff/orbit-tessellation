@@ -35,6 +35,18 @@ plotting = [
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[tool.pdm.dev-dependencies]
+dev = [
+    "mypy>=1.5.1",
+]
+docs = [
+    "mkdocs>=1.5.2",
+    "mkdocstrings[python]>=0.23.0",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-literate-nav>=0.6.0",
+    "mkdocs-material>=9.2.8",
+]
+
 [tool.black]
 line-length = 100
 target-version = ["py38", "py39", "py310", "py311"]
@@ -50,15 +62,3 @@ line-length = 100
 
 [tool.mypy]
 ignore_missing_imports = true
-
-[tool.pdm.dev-dependencies]
-dev = [
-    "mypy>=1.5.1",
-]
-docs = [
-    "mkdocs>=1.5.2",
-    "mkdocstrings[python]>=0.23.0",
-    "mkdocs-gen-files>=0.5.0",
-    "mkdocs-literate-nav>=0.6.0",
-    "mkdocs-material>=9.2.8",
-]

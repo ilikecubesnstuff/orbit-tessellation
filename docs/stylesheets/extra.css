@@ -1,0 +1,11 @@
+.md-grid {
+    max-width: 90%;
+}
+
+.md-nav__title {
+    font-size: 1.6em;
+}
+
+.md-nav__list {
+    font-size: 1.1em;
+}
