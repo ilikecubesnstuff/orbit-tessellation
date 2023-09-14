@@ -7,27 +7,15 @@ theme:
   icon:
     repo: fontawesome/brands/github
   palette:
-  # Adapted from https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette-toggle
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: deep-purple
-      accent: purple
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: deep-purple
-      accent: purple
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    scheme: slate
+    primary: deep-purple
+    accent: purple
   font:
     text: Atkinson Hyperlegible
     code: Ubuntu Mono
   features:
+    - content.code.copy
+    - content.tabs.link
     - navigation.indexes
     - navigation.instant
     - navigation.sections
@@ -51,9 +39,9 @@ plugins:
 
 nav:
 - Home: index.md
+- installation.md
 - About:
   - about/index.md
-  - about/installation.md
   - about/motivation.md
   - about/algorithm.md
   - Usage: about/usage.md
@@ -71,11 +59,26 @@ nav:
 
 markdown_extensions:
   - admonition
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
       permalink_title: Anchor link to this section for reference
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

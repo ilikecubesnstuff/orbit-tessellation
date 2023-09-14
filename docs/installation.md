@@ -1,6 +1,6 @@
 # Installation
 
-!!! Note
+!!! warning "Note to documentation author"
     Incomplete.
 
 Install this package via `pip`:
