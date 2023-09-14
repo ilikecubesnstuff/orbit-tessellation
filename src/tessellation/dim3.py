@@ -99,6 +99,8 @@ class Tessellation3D(TessellationBase):
 
         """
 
+        points: np.ndarray
+
         def sphere(self) -> float:
             """
             !!! attention "AI-Generated Content"
@@ -195,7 +197,17 @@ class Tessellation3D(TessellationBase):
         default = convexhull_rot4
 
     @property
-    def volume(self):
+    def volume(self) -> float:
+        """
+        !!! attention "AI-Generated Content"
+            This docstring is AI-generated.
+
+        Property to retrieve the volume of the tessellation.
+
+        Returns:
+            float: Volume of the tessellation (same as measure).
+
+        """
         return self.measure
 
     def plot(

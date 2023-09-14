@@ -15,6 +15,7 @@ This module is part of the tessellation package and can be used for various orbi
 from __future__ import annotations
 
 from itertools import combinations
+from math import factorial
 
 import numpy as np
 from scipy import linalg, spatial
@@ -31,7 +32,7 @@ class TessellationGeneric(TessellationBase):
     """
 
     @staticmethod
-    def simplex_sides(*vertices: np.ndarray) -> float:
+    def simplex_sides(*vertices: np.ndarray) -> list:
         """
         !!! attention "AI-Generated Content"
             This docstring is AI-generated.
@@ -69,7 +70,7 @@ class TessellationGeneric(TessellationBase):
         first, *rest = vertices
         dim = len(first)
         mat = [v - first for v in rest]
-        return linalg.det(mat) / np.math.factorial(dim)
+        return linalg.det(mat) / factorial(dim)
 
     class Normalization(TessellationBase):
         """

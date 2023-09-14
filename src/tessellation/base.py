@@ -12,7 +12,7 @@ The module also includes custom exceptions and utility functions used in tessell
 from __future__ import annotations
 
 import warnings
-from abc import abstractstaticmethod
+from abc import abstractmethod
 from collections import defaultdict
 from typing import Any, Callable, Mapping, Optional, Union
 
@@ -50,7 +50,7 @@ class TessellationBase:
 
     __slots__ = (
         "points",
-        "normalizations",
+        "_normalizations",
         "tri",
         "tracers",
         "mask",
@@ -89,7 +89,7 @@ class TessellationBase:
         self.tracers: Mapping[str, np.ndarray]
         self.mask: Optional[np.ndarray]
         self.normalization_const: float
-        self.measure: Optional[float]
+        self.measure: float
         verbosity = verbosity
 
         normalization_class = getattr(self, "Normalization", type("Normalization", (), {}))
@@ -197,7 +197,8 @@ class TessellationBase:
             raise ValueError(message)
         self.normalization_const = normalization_method(self)
 
-    @abstractstaticmethod
+    @staticmethod
+    @abstractmethod
     def simplex_sides(*vertices: np.ndarray) -> list:
         """
         !!! attention "AI-Generated Content"
@@ -211,9 +212,10 @@ class TessellationBase:
         Returns:
             List[float]: A list of side lengths.
         """
-        pass
+        return []
 
-    @abstractstaticmethod
+    @staticmethod
+    @abstractmethod
     def simplex_measure(*vertices: np.ndarray) -> float:
         """
         !!! attention "AI-Generated Content"
@@ -227,7 +229,7 @@ class TessellationBase:
         Returns:
             float: The measure of the simplex.
         """
-        pass
+        return 0.0
 
     def plot(self, fig, plot_included=True, plot_removed=False, plot_points=True, verbosity=1):
         """

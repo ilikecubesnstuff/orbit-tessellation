@@ -87,6 +87,8 @@ class Tessellation2D(TessellationBase):
 
         """
 
+        points: np.ndarray
+
         def circle(self) -> float:
             """
             !!! attention "AI-Generated Content"
