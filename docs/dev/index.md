@@ -1,4 +1,4 @@
 # Developer Guide for `orbit-tessellation`
 
-!!! Note
+!!! warning "Note to documentation author"
     Incomplete.

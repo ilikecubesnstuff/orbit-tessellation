@@ -1,6 +1,6 @@
 # Introduction
 
-!!! Note
+!!! warning "Note to documentation author"
     Incomplete.
 
 Use `tessellation.Tessellation` on your point array to perform the commensurability evaluation.

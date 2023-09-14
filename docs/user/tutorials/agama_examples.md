@@ -1,4 +1,4 @@
 # Agama Examples
 
-!!! Note
+!!! warning "Note to documentation author"
     Incomplete.
