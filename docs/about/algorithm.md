@@ -29,6 +29,42 @@ The trimming condition can be written out as so:
 
 $$ \frac{\text{longest side}}{\text{median(all shortest sides)}} > \text{axis ratio} $$
 
+Using different axis ratios accents commensurate tracks to differing degrees.
+
+=== "0"
+    ![Axis ratio of 0](ar0.png){ width=50% align=left }
+
+    All simplices with an axis ratio above 0 are removed.
+    Commensurability is calculated from the remaining simplices.
+
+    !!! note "No Total Measure"
+        By setting the axis ratio threshold to 0, all simplices are removed.
+
+=== "5"
+    ![Axis ratio of 5](ar5.png){ width=50% align=left }
+
+    All simplices with an axis ratio above 5 are removed.
+    Commensurability is calculated from the remaining simplices.
+
+=== "10"
+    ![Axis ratio of 10](ar10.png){ width=50% align=left }
+
+    All simplices with an axis ratio above 10 are removed.
+    Commensurability is calculated from the remaining simplices.
+
+=== "15"
+    ![Axis ratio of 15](ar15.png){ width=50% align=left }
+
+    All simplices with an axis ratio above 15 are removed.
+    Commensurability is calculated from the remaining simplices.
+
+=== "20"
+    ![Axis ratio of 20](ar20.png){ width=50% align=left }
+
+    All simplices with an axis ratio above 20 are removed.
+    Commensurability is calculated from the remaining simplices.
+
+
 ## Compute the Normalization
 
 There is some delicacy in choosing an appropriate normalization.
@@ -58,7 +94,6 @@ In 3D, the default normalization takes 4 rotated copies of the point array and c
 
     !!! note "Co-rotation Tracks"
         Co-rotation resonance tracks are difficult to detect with this normalization routine.
-        See the lines near the bottom right of the image.
 
 === "Convex Hull in $R$ vs $z$"
     ![Phase space commensurability diagram with "Rz_convexhull" normalization routine](Rz_convexhull.png){ width=50% align=left }
