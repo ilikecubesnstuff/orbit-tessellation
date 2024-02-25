@@ -1,11 +1,16 @@
 """
-!!! attention "AI-Generated Content"
-    This docstring is AI-generated.
+This package contains 6 modules.
 
-Module: __init__
+The tessellation and trimming algorithm is implemented across the following:
 
-This module provides version information for the orbit-tessellation package and imports the `Tessellation` function from the `constructor` module.
+- `base.py` - the main algorithm.
+- `dim2.py` - 2D method implementations and normalizations routines.
+- `dim3.py` - 3D method implementations and normalization routines.
+- `generic.py` - general N-D method implementations and normalization routines.
 
+Package-specific exceptions are defined in `exceptions.py`.
+
+The function used to construct tessellation objects is defined in `constructor.py`.
 """
 
 from importlib.metadata import version as _version

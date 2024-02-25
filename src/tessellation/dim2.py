@@ -1,17 +1,10 @@
 """
-!!! attention "AI-Generated Content"
-    This docstring is AI-generated.
-
-Module: dim3
-
-This module provides a 2D tessellation algorithm applied to orbits. It defines the `Tessellation2D` class,
-which inherits from `TessellationBase` and includes methods for calculating simplex sides and measures in
-two-dimensional space. It also contains the `Normalization` nested class with various normalization methods
-for 2D tessellation, including area calculations.
-
-Additionally, it offers a plotting function to visualize the tessellation.
-
+This module implements a 2D tessellation and trimming algorithm in the `Tessellation2D` class.
 This module is part of the tessellation package and can be used for 2D orbit tessellation tasks.
+
+It inherits from `TessellationBase` and includes methods for calculating triangle side lengths
+and triangle areas. The `Normalization` nested class includes normalization methods.
+Additionally, the class offers a plotting function to visualize the tessellation.
 """
 import numpy as np
 from scipy import linalg
@@ -28,18 +21,12 @@ from .base import TessellationBase
 
 class Tessellation2D(TessellationBase):
     """
-    !!! attention "AI-Generated Content"
-        This docstring is AI-generated.
-
-    A class representing a 2D tessellation applied to orbits.
+    A class for the tessellation and trimming algorithm applied in 2 dimensions.
     """
 
     @staticmethod
     def simplex_sides(*vertices: np.ndarray) -> list:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Compute the side lengths of a 2D simplex defined by its vertices.
 
         Args:
@@ -59,9 +46,6 @@ class Tessellation2D(TessellationBase):
     @staticmethod
     def simplex_measure(*vertices: np.ndarray) -> float:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Compute the measure (area) of a 2D simplex defined by its vertices.
 
         Args:
@@ -76,29 +60,21 @@ class Tessellation2D(TessellationBase):
 
     class Normalization:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        A class providing various methods for normalization in 2D tessellation.
+        A class providing various methods for normalization in 2D.
 
         Methods:
             circle: Compute the area of a circle containing the points.
             default: Default normalization method (circle).
-
         """
 
         points: np.ndarray
 
         def circle(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
             Compute the area of a circle containing the points.
 
             Returns:
                 float: Area of the circle.
-
             """
             r = linalg.norm(self.points, axis=1)
             return np.pi * (max(r) ** 2)
@@ -108,14 +84,10 @@ class Tessellation2D(TessellationBase):
     @property
     def area(self) -> float:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Property to retrieve the area of the tessellation.
+        Alias for `measure`.
 
         Returns:
             float: Area of the tessellation (same as measure).
-
         """
         return self.measure
 
@@ -129,10 +101,8 @@ class Tessellation2D(TessellationBase):
         show=True,
     ):
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Plot the 2D tessellation.
+        Included triangles are green, excluded triangles are red.
 
         Args:
             plot_included (bool): Whether to plot included triangles (default True).
@@ -146,7 +116,6 @@ class Tessellation2D(TessellationBase):
             ImportError: If Matplotlib is not available.
 
             RuntimeError: If tessellation failed.
-
         """
         if not PLOTTING:
             raise ImportError("This method requires matplotlib")

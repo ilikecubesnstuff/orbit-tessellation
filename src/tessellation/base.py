@@ -1,13 +1,6 @@
 """
-!!! attention "AI-Generated Content"
-    This docstring is AI-generated.
-
-Module: base
-
-This module defines the `TessellationBase` class and related functions for the tessellation package. The `TessellationBase` class serves as the base class for tessellation algorithms applied to orbits.
-
-The module also includes custom exceptions and utility functions used in tessellation calculations.
-
+This module defines the abstract base class `TessellationBase` used for
+2D, 3D and general N-D tessellation algorithms.
 """
 from __future__ import annotations
 
@@ -28,10 +21,8 @@ def MISSING_METHOD() -> None:
 
 class FailedDelaunay:
     """
-    !!! attention "AI-Generated Content"
-        This docstring is AI-generated.
-
     A class representing a failed Delaunay triangulation.
+    This is used in the case of a degenerate or co-spherical collections of points.
     """
 
     def __init__(self):
@@ -42,10 +33,7 @@ class FailedDelaunay:
 
 class TessellationBase:
     """
-    !!! attention "AI-Generated Content"
-        This docstring is AI-generated.
-
-    A base class for tessellation algorithms applied to orbits.
+    A base class for the tessellation and trimming algorithm.
     """
 
     __slots__ = (
@@ -69,10 +57,7 @@ class TessellationBase:
         verbosity: int = 0,
     ) -> None:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Initialize a TessellationBase instance.
+        This is an abstract base class - use `generic.TessellationGeneric` for general collections of points.
 
         Args:
             points (np.ndarray): The input points for tessellation.
@@ -201,10 +186,8 @@ class TessellationBase:
     @abstractmethod
     def simplex_sides(*vertices: np.ndarray) -> list:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Abstract method to calculate simplex side lengths.
+        Calculate the side lengths of a simplex.
+        This must be redefined in a base class.
 
         Args:
             *vertices: The vertices of the simplex.
@@ -218,10 +201,8 @@ class TessellationBase:
     @abstractmethod
     def simplex_measure(*vertices: np.ndarray) -> float:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Abstract method to calculate the measure of a simplex.
+        Calculate the measure of a simplex.
+        This must be redefined in a base class.
 
         Args:
             *vertices: The vertices of the simplex.
@@ -231,18 +212,16 @@ class TessellationBase:
         """
         return 0.0
 
-    def plot(self, fig, plot_included=True, plot_removed=False, plot_points=True, verbosity=1):
+    def plot(self, plot_included=True, plot_removed=False, plot_points=True, verbosity=1, ax=None, show=True):
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Plot the tessellation.
 
         Args:
-            fig (matplotlib.figure.Figure): The figure for plotting.
             plot_included (bool, optional): Whether to plot included edges (default True).
             plot_removed (bool, optional): Whether to plot removed edges (default False).
-            plot_points (bool, optional): Whether to plot points (default True).
+            plot_points (bool, optional): Whether to plot the original points (default True).
             verbosity (int, optional): Verbosity level (default 1).
+            ax (matplotlib.axes._axes.Axes, optional): Matplotlib axes (default None).
+            show (bool): Whether to display the plot (default True).
         """
         pass

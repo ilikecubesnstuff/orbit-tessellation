@@ -1,17 +1,10 @@
 """
-!!! attention "AI-Generated Content"
-    This docstring is AI-generated.
-
-Module: dim3
-
-This module provides a 3D tessellation algorithm applied to orbits using various methods for calculating
-simplex sides, measures, and normalizations. It also includes a plotting function for visualizing the tessellation results.
-
-The `Tessellation3D` class is the main class of this module, inheriting from `TessellationBase`. It offers methods
-for calculating simplex sides and measures in 3D space. Additionally, it contains a nested `Normalization` class
-with various normalization methods for 3D tessellation.
-
+This module implements a 3D tessellation and trimming algorithm in the `Tessellation3D` class.
 This module is part of the tessellation package and can be used for 3D orbit tessellation tasks.
+
+It inherits from `TessellationBase` and includes methods for calculating tetrahedron side lengths
+and tetrahedron volumes. The `Normalization` nested class includes normalization methods.
+Additionally, the class offers a plotting function to visualize the tessellation.
 """
 import numpy as np
 
@@ -30,18 +23,12 @@ from .base import TessellationBase
 
 class Tessellation3D(TessellationBase):
     """
-    !!! attention "AI-Generated Content"
-        This docstring is AI-generated.
-
-    A class representing a 3D tessellation applied to orbits.
+    A class for the tessellation and trimming algorithm applied in 3 dimensions.
     """
 
     @staticmethod
     def simplex_sides(*vertices: np.ndarray) -> list:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Compute the side lengths of a 3D simplex defined by its vertices.
 
         Args:
@@ -64,9 +51,6 @@ class Tessellation3D(TessellationBase):
     @staticmethod
     def simplex_measure(*vertices: np.ndarray) -> float:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Compute the measure (volume) of a 3D simplex defined by its vertices.
 
         Args:
@@ -84,61 +68,45 @@ class Tessellation3D(TessellationBase):
 
     class Normalization:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        A class providing various methods for normalization in 3D tessellation.
+        A class providing various methods for normalization in 3D.
 
         Methods:
             sphere: Compute the volume of a sphere containing the points.
             cylinder: Compute the volume of a cylinder containing the points.
-            Rz_convexhull: Compute the volume of the convex hull after rotation.
+            Rz_convexhull: Compute the volume of the convex hull in the R vs z plane rotated around the z-axis.
             convexhull: Compute the volume of the convex hull of the points.
-            convexhull_rot4: Compute the volume of the convex hull after rotation by 90 degrees four times.
+            convexhull_rot4: Compute the volume of the convex hull of the points including copied rotations by 90 degrees four times.
             default: Default normalization method (convexhull_rot4).
-
         """
 
         points: np.ndarray
 
         def sphere(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
             Compute the volume of a sphere containing the points.
 
             Returns:
                 float: Volume of the sphere.
-
             """
             r = linalg.norm(self.points, axis=1)
             return 4 / 3 * np.pi * np.max(r) ** 3
 
         def cylinder(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
             Compute the volume of a cylinder containing the points.
 
             Returns:
                 float: Volume of the cylinder.
-
             """
             x, y, z = self.points.T
             return np.pi * np.max(x**2 + y**2) * (np.max(z) - np.min(z))
 
         def Rz_convexhull(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
-            Compute the volume of the convex hull after rotation.
+            Compute the volume of the convex hull in the R vs z plane rotated around the z-axis.
 
             Returns:
                 float: Volume of the convex hull after rotation.
-
             """
             x, y, z = self.points.T
             R = np.sqrt(x**2 + y**2)
@@ -161,28 +129,23 @@ class Tessellation3D(TessellationBase):
 
         def convexhull(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
             Compute the volume of the convex hull of the points.
 
             Returns:
                 float: Volume of the convex hull.
 
+            Note:
+                This method may not work correctly for co-rotation cases.
             """
             hull = spatial.ConvexHull(self.points)
             return hull.volume
 
         def convexhull_rot4(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
-            Compute the volume of the convex hull after rotation by 90 degrees four times.
+            Compute the volume of the convex hull of the points including copied rotations by 90 degrees four times.
 
             Returns:
-                float: Volume of the convex hull after rotation.
-
+                float: Volume of the convex hull.
             """
             x, y, z = self.points.T
             r000 = np.array([+x, +y, z]).T
@@ -199,14 +162,10 @@ class Tessellation3D(TessellationBase):
     @property
     def volume(self) -> float:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Property to retrieve the volume of the tessellation.
+        Alias for `measure`.
 
         Returns:
             float: Volume of the tessellation (same as measure).
-
         """
         return self.measure
 
@@ -220,10 +179,9 @@ class Tessellation3D(TessellationBase):
         show=True,
     ):
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
         Plot the 3D tessellation.
+        Included tetrahedra are green, excluded tetrahedra are red.
+        Shared edges are blue.
 
         Args:
             plot_included (bool): Whether to plot included triangles (default True).
@@ -237,7 +195,6 @@ class Tessellation3D(TessellationBase):
             ImportError: If Matplotlib is not available.
 
             RuntimeError: If tessellation failed.
-
         """
         if not PLOTTING:
             raise ImportError("This method requires matplotlib")

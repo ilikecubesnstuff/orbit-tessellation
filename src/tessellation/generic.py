@@ -1,16 +1,9 @@
 """
-!!! attention "AI-Generated Content"
-    This docstring is AI-generated.
+This module implements a N-D tessellation and trimming algorithm in the `TessellationGeneric` class.
+This module is part of the tessellation package and can be used for general orbit tessellation tasks.
 
-Module: generic
-
-This module provides a tessellation algorithm applied to orbits using a generic approach.
-
-It defines the `TessellationGeneric` class, which inherits from `TessellationBase` and includes methods for
-calculating simplex sides and measures. It also contains the `Normalization` nested class with various
-normalization methods for tessellation, including volume approximations and convex hull calculations.
-
-This module is part of the tessellation package and can be used for various orbit tessellation tasks.
+It inherits from `TessellationBase` and includes methods for calculating simplex side lengths
+and simplex volumes. The `Normalization` nested class includes normalization methods.
 """
 from __future__ import annotations
 
@@ -25,19 +18,13 @@ from .base import TessellationBase
 
 class TessellationGeneric(TessellationBase):
     """
-    !!! attention "AI-Generated Content"
-        This docstring is AI-generated.
-
-    A class representing a generic tessellation applied to orbits.
+    A class for the tessellation and trimming algorithm applied in N dimensions.
     """
 
     @staticmethod
     def simplex_sides(*vertices: np.ndarray) -> list:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Compute the sides of a simplex defined by its vertices.
+        Compute the side lengths of a N-D simplex defined by its vertices.
 
         Args:
             *vertices: The vertices of the simplex.
@@ -53,10 +40,7 @@ class TessellationGeneric(TessellationBase):
     @staticmethod
     def simplex_measure(*vertices: np.ndarray) -> float:
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        Compute the measure (volume) of a simplex defined by its vertices.
+        Compute the measure (volume) of a N-D simplex defined by its vertices.
 
         Args:
             *vertices: The vertices of the simplex.
@@ -74,23 +58,17 @@ class TessellationGeneric(TessellationBase):
 
     class Normalization(TessellationBase):
         """
-        !!! attention "AI-Generated Content"
-            This docstring is AI-generated.
-
-        A class providing various methods for normalization in tessellation.
+        A class providing various methods for normalization in N dimensions.
 
         Methods:
             nsphere_approx: Compute the approximate volume of an n-sphere containing the points.
             convexhull: Compute the volume of the convex hull of the points.
-            convexhull_rot4: Compute the volume of the convex hull after rotation by 90 degrees four times.
+            convexhull_rot4: Compute the volume of the convex hull of the points including copied rotations by 90 degrees four times.
             default: Default normalization method (convexhull_rot4).
         """
 
         def nsphere_approx(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
             Compute an approximate volume of an n-sphere containing the points.
 
             Returns:
@@ -105,9 +83,6 @@ class TessellationGeneric(TessellationBase):
 
         def convexhull(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
             Compute the volume of the convex hull of the points.
 
             Returns:
@@ -121,16 +96,13 @@ class TessellationGeneric(TessellationBase):
 
         def convexhull_rot4(self) -> float:
             """
-            !!! attention "AI-Generated Content"
-                This docstring is AI-generated.
-
-            Compute the volume of the convex hull after rotation by 90 degrees four times.
+            Compute the volume of the convex hull of the points including copied rotations by 90 degrees four times.
 
             Returns:
-                float: Volume of the convex hull after rotation.
+                float: Volume of the convex hull.
 
             Note:
-                This method involves specific rotations of the points.
+                This method involves rotations of the points using the first two axes.
             """
             x, y, *rest = self.points.T
             r000 = np.array([+x, +y, *rest]).T

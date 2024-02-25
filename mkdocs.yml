@@ -62,16 +62,15 @@ nav:
   - user/index.md
   - user/introduction.md
   - Tutorials:
-    - user/tutorials/agama_examples.md
-    - user/tutorials/gala_examples.md
-    - user/tutorials/galpy_examples.md
-- Developer Guide:
-  - dev/index.md
-  - dev/contributing.md
+    - user/tutorials/mw_orbit.md
+    - user/tutorials/pidgey.md
+    - user/tutorials/multiprocessing.md
 - API Reference: reference/
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.details

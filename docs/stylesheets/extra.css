@@ -1,5 +1,5 @@
 .md-grid {
-    max-width: 90%;
+    max-width: 80%;
 }
 
 .md-nav__title {
@@ -7,5 +7,9 @@
 }
 
 .md-nav__list {
+    font-size: 1.2em;
+}
+
+p {
     font-size: 1.1em;
 }

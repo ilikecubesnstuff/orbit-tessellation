@@ -1,11 +1,6 @@
 """
-!!! attention "AI-Generated Content"
-    This docstring is AI-generated.
-
-Module: constructor
-
-This module provides functions for tessellating orbits in different dimensions. It includes the `Tessellation` function, which creates a tessellation object based on the input data and parameters.
-
+This module provides the main function of the package for performing the
+tessellation and trimming algorithm on an arbitrary collection of points.
 """
 
 from __future__ import annotations
@@ -33,12 +28,10 @@ def Tessellation(
     verbosity: int = 0,
 ) -> _TessType:
     """
-    !!! attention "AI-Generated Content"
-        This docstring is AI-generated.
+    Perform a tessellation and trimming on a collection of points or orbit object (from `galpy` or `gala`).
 
-    Create a tessellation object based on the input data.
-
-    This function creates a tessellation object based on the input data and parameters. The dimensionality of the input data is determined automatically, and the appropriate tessellation class is used.
+    This function returns a tessellation object based on the dimensionality of the points.
+    If an orbit object is passed, the dimensions to extract must be specified by name in a tuple.
 
     Args:
         orbit_or_point_array (Any): Input data, which can be an orbit object or a 2D array of shape (npoints, ndim).
@@ -50,11 +43,10 @@ def Tessellation(
         verbosity (int, optional): Verbosity level (default 0).
 
     Returns:
-        _TessType: A tessellation object of the appropriate dimensionality.
+        TessellationBase: A tessellation object of the appropriate dimensionality.
 
     Raises:
         LowDimensionalityException: If the input data has an unsupported dimensionality (less than 2).
-
     """
     points = orbit = orbit_or_point_array
 
